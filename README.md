@@ -1,14 +1,14 @@
 # NovaEducation
 CS3321 Project
 
-Contributors:
+### Contributors:
 
--Utku Yurter
--Matthew Britton
--Matt Gonzalez
--Kent Cyrel Crisostomo
--Dung Dang
+* Utku Yurter
+* Matthew Britton
+* Matt Gonzalez
+* Kent Cyrel Crisostomo
+* Dung Dang
 
-Running the server:
+### Running the server:
 
 $ python3 manage.py runserver
