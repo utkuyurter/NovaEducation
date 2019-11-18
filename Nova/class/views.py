@@ -27,3 +27,27 @@ def classTests(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+def classQuizzesQuiz(request):
+    template = loader.get_template('class/quiz_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def classTestsTest(request):
+    template = loader.get_template('class/test_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def classAssignmentAssignment(request):
+    template = loader.get_template('class/assignment_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def classProjectsProject(request):
+    template = loader.get_template('class/project_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
