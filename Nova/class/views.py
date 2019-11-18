@@ -51,3 +51,40 @@ def classProjectsProject(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+
+def teacherClassAssignments(request):
+    template = loader.get_template('class/teacher_assignment_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def teacherClassQuizzes(request):
+    template = loader.get_template('class/teacher_quiz_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def teacherClassProjects(request):
+    template = loader.get_template('class/teacher_project_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def teacherClassTests(request):
+    template = loader.get_template('class/teacher_test_page.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def contentSettings(request):
+    template = loader.get_template('class/content_settings.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def contentCreate(request):
+    template = loader.get_template('class/content_create.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
