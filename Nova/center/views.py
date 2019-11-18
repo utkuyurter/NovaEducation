@@ -12,3 +12,15 @@ def studentCenter(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+def teacherCenter(request):
+    template = loader.get_template('center/land_teacher.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def studentClass(request):
+    template = loader.get_template('center/student_class.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
