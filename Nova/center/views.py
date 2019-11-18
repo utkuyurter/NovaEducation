@@ -24,3 +24,15 @@ def studentClass(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+def teacherClass(request):
+    template = loader.get_template('center/teacher_class.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+def teacherClassSettings(request):
+    template = loader.get_template('center/course_settings.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
