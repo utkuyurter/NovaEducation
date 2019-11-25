@@ -1,6 +1,10 @@
 # NovaEducation
 CS3321 Project
 
+### Software Engineering Model:
+Waterfall Model
+
+
 ### Contributors:
 
 * Utku Yurter
@@ -18,3 +22,4 @@ $ python3 manage.py runserver
 ### Tools Used:
 * [Django Framework](https://www.djangoproject.com/)
 * [8b.io](https://8b.com/)
+
