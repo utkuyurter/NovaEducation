@@ -97,7 +97,7 @@
     <div class="container align-center mbr-white">
         <!-- Title -->
         <div class="title-wrap">
-            <h1 class="mbr-section-title mbr-fonts-style display-2"><strong>Content Settings</strong></h1>
+            <h1 class="mbr-section-title mbr-fonts-style display-2"><strong>Grade Content</strong></h1>
         </div>
         <!-- Forms -->
         <div class="mbr-row mbr-jc-c">
@@ -111,26 +111,17 @@
 
                 <div class="field" data-for="form[data][0][1]">
                     <input type="hidden" name="form[data][0][0]" value="Name" id="form[data][0][0]-form1-2d" data-form-field="">
-                    <input type="text" name="form[data][0][1]" data-form-field="Name" placeholder="Title" required="" id="form[data][0][1]-form1-2d">
+                    <input type="text" name="form[data][0][1]" data-form-field="Name" placeholder="Student Grade" required="" id="form[data][0][1]-form1-2d">
+                </div>
+                <div class="field" data-for="form[data][0][1]">
+                    <input type="hidden" name="form[data][0][0]" value="Name" id="form[data][0][0]-form1-2d" data-form-field="">
+                    <input type="text" name="form[data][0][1]" data-form-field="Name" placeholder="Total Possible Grade" required="" id="form[data][0][1]-form1-2d">
                 </div>
                 <div class="text-field" data-for="form[data][4][1]">
                                 <input type="hidden" name="form[data][2][0]" value="Message" id="form[data][4][0]-form1-2d" data-form-field="">
-                                <textarea name="form[data][2][1]" rows="5" data-form-field="Description" placeholder="Description" id="form[data][4][1]-form1-2d"></textarea>
+                                <textarea name="form[data][2][1]" rows="5" data-form-field="Comments" placeholder="Description" id="form[data][4][1]-form1-2d"></textarea>
                             </div>
 
-                <div class="field" data-for="form[data][2][1]">
-                   <div class="date-picker-wrap">
-                       <input type="hidden" name="form[data][2][0]" value="Due Date" id="form[data][2][0]-form1-2d" data-form-field="">
-                       <amp-date-picker id="simple-date-picker" type="single" mode="overlay" layout="container" on="select:AMP.setState({'form[data][2][1]': event.date, dateType1: event.id})" input-selector=".input-date28" class="example-picker space-between" open-after-select="" format="YYYY-MM-DD" locale="en">
-                       <input class="input-date28" data-form-field="Due Date" placeholder="Due Date" autocomplete="off" name="form[data][2][1]" required="" id="form[data][2][1]-form1-2d">
-                   </amp-date-picker>
-               </div>
-           </div>
-           <!-- 4 -->
-           <div class="field" data-for="form[data][3][1]">
-               <input type="hidden" name="form[data][3][0]" value="Due Time" id="form[data][3][0]-form1-2d" data-form-field="">
-               <input type="time" class="timepicker" name="form[data][3][1]" data-form-field="Due Time" placeholder="Due Time" required="" value="12:00" min="09:00" max="18:00" step="60" id="form[data][3][1]-form1-2d">
-           </div>
 
             <!-- Button -->
             <div class="align-center">
@@ -140,7 +131,7 @@
             </div>
             <div class="align-center">
                 <button type="submit" class="btn btn-primary btn-form display-4">
-                    Update Content
+                    Grade Content
                 </button>
             </div>
 

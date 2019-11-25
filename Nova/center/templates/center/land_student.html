@@ -1,4 +1,5 @@
 {% load static %}
+{% load customFunctions %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +87,12 @@
 							<a class="text-black mbr-bold dropdown-item display-7" href="https://8b.com">Classews</a>
 						</div>
 					</li>
+
 					<li class="nav-item">
-						<a class="nav-link mbr-bold link text-black display-7" href="https://8b.com">Home</a>
+						<a class="nav-link mbr-bold link text-black display-7" href="../../../logout/">Log Out</a>
+
 					</li>
+
                 </ul>
 				<!-- NAVBAR ITEMS END -->
 				<!-- SOCIAL ICON -->
@@ -119,9 +123,11 @@
             <img class="img2" src="{% static "img/uhd.png" %}" layout="responsive" width="200" height="200">
             </div>
         <div class="title">
-            <h3 class="mbr-section-title mbr-fonts-style mbr-bold display-2">Utku Yurter</h3>
-            <h4 class="mbr-text mbr-fonts-style mbr-pt-2 display-5">School : University of Houston - Downtown<br>Student ID : 900446009<br>Major : Computer Science<br>Advisor : Advisor Name<br></h4>
+            {%for student in student%}
+            <h3 class="mbr-section-title mbr-fonts-style mbr-bold display-2">{{student.first_name}} {{student.last_name}}</h3>
+            <h4 class="mbr-text mbr-fonts-style mbr-pt-2 display-5">School : {{student.school}}<br>Student ID : {{student.student_id}}<br>Major : {{student.major}}<br>Advisor : Advisor Name<br></h4>
         </div>
+            {%endfor%}
     </div>
 </section>
 
@@ -140,9 +146,10 @@
             <div class="card mbr-col-sm-12 mbr-col-md-8 mbr-col-lg-4 align-center md-pb">
                 <div class="card-wrapper mbr-flex">
 
+                    {%for student in student%}
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><u>GPA</u><br><span style="font-weight: normal;">3.60</span><br><span style="font-weight: normal;"><br></span><br><u>Projected GPA</u><br><span style="font-weight: normal;">3.85</span></h3>
-
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><u>GPA</u><br><span style="font-weight: normal;">{{student.gpa}}</span><br><span style="font-weight: normal;"><br></span><br><u>Projected GPA</u><br><span style="font-weight: normal;">{{student.gpa_projected}}</span></h3>
+                    {%endfor%}
 
 
                     </div>
@@ -152,8 +159,15 @@
                 <div class="card-wrapper mbr-flex">
 
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><u>Grades</u><br><span style="font-weight: normal;">MATH 2414 - A<br>BIOL 1301 - B<br>MATH 2414 - A</span><div><span style="font-weight: normal;">BIOL 1301 - B</span></div><div><span style="font-weight: normal;">MATH 2414 - A</span></div><div><br><br></div></h3>
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><u>Grades</u><br>
+                            {%for class in classes%}
+                            {%for student in student%}
+                            <span style="font-weight: normal;">{{class.class_of.class_name}} {{class.class_of.class_number}} - {{class.class_of.class_id | updateClassGrade:student.nova_id}}<br></span>
 
+
+                    {%endfor%}
+                    {%endfor%}
+                    <div><br><br></div></h3>
 
 
                     </div>
@@ -162,9 +176,10 @@
             <div class="card mbr-col-sm-12 mbr-col-md-8 mbr-col-lg-4 align-center last-child">
                 <div class="card-wrapper mbr-flex">
 
+                    {%for student in student%}
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><u>Credits Earned</u><br><span style="font-weight: normal;">60</span><br><span style="font-weight: normal;"><br></span><br><u>Credits Attempted</u><br><span style="font-weight: normal;">15</span></h3>
-
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><u>Credits Earned</u><br><span style="font-weight: normal;">{{student.credits_taken}}</span><br><span style="font-weight: normal;"><br></span><br><u>Credits Attempted</u><br><span style="font-weight: normal;">{{student.credits_current}}</span></h3>
+                    {%endfor%}
 
 
                     </div>
@@ -186,48 +201,27 @@
                 <h3 class="mbr-section-title mbr-bold mbr-fonts-style display-2">Courses</h3>
 
         </div>
+        {%for class in classes%}
+        {%for student in student%}
         <div class="mbr-row mbr-jc-c">
-            <div class="card mbr-col-sm-12 mbr-col-md-8 mbr-col-lg-4 align-center md-pb">
+            <div class="card mbr-col-sm-12 mbr-col-md-8 mbr-col-lg-4 align-center md-pb last-child">
                 <div class="card-wrapper mbr-flex mbr-column">
                     <div class="card-img align-center mbr-pb-3">
-                        <div class="image-text mbr-fonts-style display-1">MATH 2414</div>
+
+                        <div class="image-text mbr-fonts-style display-1">{{class.class_of.class_name}} {{class.class_of.class_number}}</div>
                     </div>
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Grade : 93%</h3>
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Grade : {{class.class_of.class_id | updateClassGrade:student.nova_id}}%</h3>
 
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Professor : Professor Name</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../student_class/">Course Content</a></div>
-                    </div>
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Professor : {{class.class_of.class_teacher}}</p>
+                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../student_class/{{class.class_of.class_id}}/{{class.student_id}}">Course Content</a></div>
+                    </div><br>
                 </div>
             </div>
-            <div class="card mbr-col-sm-12 mbr-col-md-8 mbr-col-lg-4 align-center md-pb">
-                <div class="card-wrapper mbr-flex mbr-column">
-                    <div class="card-img align-center mbr-pb-3">
-                        <div class="image-text mbr-fonts-style display-1">MATH 3301</div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Grade : 100%</h3>
-
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Professor : Professor Name</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-danger display-7" href="../student_class/">Course Content</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mbr-col-sm-12 mbr-col-md-8 mbr-col-lg-4 align-center last-child">
-                <div class="card-wrapper mbr-flex mbr-column">
-                    <div class="card-img align-center mbr-pb-3">
-                        <div class="image-text mbr-fonts-style display-1">CS 3301</div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Grade : 88%</h3>
-
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Professor : Professor Name</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-danger display-7" href="../student_class/">Course Content</a></div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+        {%endfor%}
+            {%endfor%}
+
     </div>
 </section>
 <img src="{% static "img/line.png" %}" layout="responsive" width="100" height="70">
@@ -241,40 +235,22 @@
 
         </div>
         <div class="mbr-row mbr-jc-c mbr-column">
-            <div class="card mbr-col-sm-12 mbr-px-4 align-center md-pb lg-pb">
+
+            {%for content in contents%}
+            {%for student in student%}
+            <div class="card mbr-col-sm-12 mbr-px-4 align-center md-pb lg-pb last-child">
                 <div class="card-wrapper mbr-flex">
 
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">MATH 2414</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">• Assignment I</h4>
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Monday 10/24/2019 at 11:59PM</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="https://8b.com">Go to Content</a></div>
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">{{content.content_of.class_id | getClassName}} {{content.content_of.class_id | getClassNumber}}</h3>
+                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">• {{content.content_of.title}}</h4>
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">{{content.content_of.due_date}} at {{content.content_of.due_time}}</p>
+                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../../class/{{content.content_of.class_id}}/{{content.id}}/{{student.nova_id}}">Go to Content</a></div>
                     </div>
                 </div>
             </div>
-            <div class="card mbr-col-sm-12 mbr-px-4 align-center md-pb lg-pb">
-                <div class="card-wrapper mbr-flex">
-
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">CS 3321</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">• Assignment I</h4>
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Monday 10/24/2019 at 11:59PM</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="https://8b.com">Go to Content</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mbr-col-sm-12 mbr-px-4 align-center last-child">
-                <div class="card-wrapper mbr-flex">
-
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">BIOL 1301</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">• Assignment I</h4>
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Monday 10/24/2019 at 11:59PM</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="https://8b.com">Go to Content</a></div>
-                    </div>
-                </div>
-            </div>
-
+            {%endfor%}
+            {%endfor%}
         </div>
     </div>
 </section>
@@ -284,63 +260,35 @@
     <div class="container">
         <div class="title-wrap mbr-pb-4 align-center">
             <h3 class="mbr-section-title mbr-bold mbr-fonts-style display-2">Reminders</h3>
-            <a class="btn btn-lg btn-primary display-7" href="https://8b.com">Create Reminder</a>
+            <a class="btn btn-lg btn-primary display-7" href="reminder_create/">Create Reminder</a>
         </div>
+
+
         <div class="mbr-row mbr-jc-c mbr-column">
+
+            {%for reminder in reminders%}
             <div class="card mbr-col-sm-12 md-pb lg-pb">
                 <div class="card-wrapper mbr-flex mbr-pt-3 mbr-pb-3 mbr-px-4">
                     <div class="card-img">
                         <div class="iconfont-wrapper">
-                            <a href="index.html"><span class="amp-iconfont mbri-success"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                            <a href="reminder_complete/{{reminder.only_id.0}}/"><span class="amp-iconfont mbri-success"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
 
 <path d="M31.314 5.334c-0.173 0.005-0.337 0.077-0.458 0.2l-18.657 18.653c-0.612 0.587 0.34 1.569 0.942 0.942l18.657-18.653c0.433-0.424 0.122-1.159-0.484-1.142zM0.667 14.667c-0.599 0-0.893 0.72-0.462 1.136l10.661 10.659c0.597 0.622 1.542-0.343 0.942-0.942l-10.661-10.659c-0.126-0.13-0.299-0.194-0.48-0.194z"></path>
 </svg></span></a>
                         </div>
                     </div>
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Don't Forget Quiz Topics</h3>
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">{{reminder.reminder_title}}</h3>
 
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">The math quiz will cover following topics: 5.5, 5.6, 5.7, 5.8</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card mbr-col-sm-12 md-pb lg-pb">
-                <div class="card-wrapper mbr-flex mbr-pt-3 mbr-pb-3 mbr-px-4">
-                    <div class="card-img">
-                        <div class="iconfont-wrapper">
-                            <a href="index.html"><span class="amp-iconfont mbri-success"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
-
-<path d="M31.314 5.334c-0.173 0.005-0.337 0.077-0.458 0.2l-18.657 18.653c-0.612 0.587 0.34 1.569 0.942 0.942l18.657-18.653c0.433-0.424 0.122-1.159-0.484-1.142zM0.667 14.667c-0.599 0-0.893 0.72-0.462 1.136l10.661 10.659c0.597 0.622 1.542-0.343 0.942-0.942l-10.661-10.659c-0.126-0.13-0.299-0.194-0.48-0.194z"></path>
-</svg></span></a>
-                        </div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Idea</h3>
-
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Maybe try to be more organized</p>
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">{{reminder.reminder_message}}</p>
 
                     </div>
                 </div>
             </div>
-            <div class="card mbr-col-sm-12 last-child">
-                <div class="card-wrapper mbr-flex mbr-pt-3 mbr-pb-3 mbr-px-4">
-                    <div class="card-img">
-                        <div class="iconfont-wrapper">
-                            <a href="index.html"><span class="amp-iconfont mbri-success"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
 
-<path d="M31.314 5.334c-0.173 0.005-0.337 0.077-0.458 0.2l-18.657 18.653c-0.612 0.587 0.34 1.569 0.942 0.942l18.657-18.653c0.433-0.424 0.122-1.159-0.484-1.142zM0.667 14.667c-0.599 0-0.893 0.72-0.462 1.136l10.661 10.659c0.597 0.622 1.542-0.343 0.942-0.942l-10.661-10.659c-0.126-0.13-0.299-0.194-0.48-0.194z"></path>
-</svg></span></a>
-                        </div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Key Info</h3>
+            {%endfor%}
 
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Don't forget to submit quiz due tonight!</p>
 
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -356,42 +304,58 @@
                 <h3 class="mbr-section-title mbr-bold mbr-fonts-style display-2">Class Schedule</h3>
 
         </div>
+
+
         <div class="mbr-row mbr-jc-c mbr-column">
             <div class="card mbr-col-sm-12 mbr-px-4 md-pb lg-pb">
                 <div class="card-wrapper mbr-flex mbr-p-4">
                     <div class="card-img">
-                        <div class="image-text mbr-fonts-style display-1">10/24/2019</div>
+                        <div class="image-text mbr-fonts-style display-1">Monday</div>
                     </div>
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Monday</h3>
 
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• 10:00AM - 11:30PM&nbsp;&nbsp;&nbsp;&nbsp;MATH 2414</p><p>• 12:00PM - 1:30PM&nbsp;&nbsp;&nbsp;&nbsp;BIOL 1301<br><br></p><p></p>
+                        {%for class in classes%}
+                        {%if "Monday" in class.class_of.days%}
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• {{class.class_of.times.0}} - {{class.class_of.times.1}}&nbsp;&nbsp;&nbsp;&nbsp;{{class.class_of.class_name}} {{class.class_of.class_number}}</p><p></p>
+                        {%endif%}
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mbr-col-sm-12 mbr-px-4 md-pb lg-pb">
+                <div class="card-wrapper mbr-flex mbr-p-4">
+                    <div class="card-img">
+                        <div class="image-text mbr-fonts-style display-1">Tuesday</div>
+                    </div>
+                    <div class="card-box">
+
+
+                        {%for class in classes%}
+                        {%if "Tuesday" in class.class_of.days%}
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• {{class.class_of.times.0}} - {{class.class_of.times.1}}&nbsp;&nbsp;&nbsp;&nbsp;{{class.class_of.class_name}} {{class.class_of.class_number}}</p><p></p>
+                        {%endif%}
+                        {%endfor%}
 
                     </div>
                 </div>
             </div>
+
             <div class="card mbr-col-sm-12 mbr-px-4 md-pb lg-pb">
                 <div class="card-wrapper mbr-flex mbr-p-4">
                     <div class="card-img">
-                        <div class="image-text mbr-fonts-style display-1">10/24/2019</div>
+                        <div class="image-text mbr-fonts-style display-1">Wednesday</div>
                     </div>
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Tuesday</h3>
 
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• 10:00AM - 11:30PM&nbsp;&nbsp;&nbsp;&nbsp;MATH 2414<br>• 12:00PM - 1:30PM&nbsp;&nbsp;&nbsp;&nbsp;BIOL 1301</p><p>• 12:00PM - 1:30PM&nbsp; &nbsp; CS&nbsp;3321<br></p><p></p>
 
-                    </div>
-                </div>
-            </div>
-            <div class="card mbr-col-sm-12 mbr-px-4 md-pb lg-pb">
-                <div class="card-wrapper mbr-flex mbr-p-4">
-                    <div class="card-img">
-                        <div class="image-text mbr-fonts-style display-1">10/24/2019</div>
-                    </div>
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Tuesday</h3>
-
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• 10:00AM - 11:30PM&nbsp;&nbsp;&nbsp;&nbsp;MATH 2414<br>• 12:00PM - 1:30PM&nbsp;&nbsp;&nbsp;&nbsp;BIOL 1301</p><p>• 12:00PM - 1:30PM&nbsp; &nbsp; CS&nbsp;3321<br></p><p></p>
+                        {%for class in classes%}
+                        {%if "Wednesday" in class.class_of.days%}
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• {{class.class_of.times.0}} - {{class.class_of.times.1}}&nbsp;&nbsp;&nbsp;&nbsp;{{class.class_of.class_name}} {{class.class_of.class_number}}</p><p></p>
+                        {%endif%}
+                        {%endfor%}
 
                     </div>
                 </div>
@@ -399,12 +363,16 @@
             <div class="card mbr-col-sm-12 mbr-px-4 last-child">
                 <div class="card-wrapper mbr-flex mbr-p-4">
                     <div class="card-img">
-                        <div class="image-text mbr-fonts-style display-1">10/24/2019</div>
+                        <div class="image-text mbr-fonts-style display-1">Thursday</div>
                     </div>
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Wednesday</h3>
 
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• 10:00AM - 11:30PM&nbsp;&nbsp;&nbsp;&nbsp;MATH 2414<br>• 12:00PM - 1:30PM&nbsp;&nbsp;&nbsp;&nbsp;BIOL 1301<br></p><p></p>
+
+                        {%for class in classes%}
+                        {%if "Thursday" in class.class_of.days%}
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7"></p><p>• {{class.class_of.times.0}} - {{class.class_of.times.1}}&nbsp;&nbsp;&nbsp;&nbsp;{{class.class_of.class_name}} {{class.class_of.class_number}}</p><p></p>
+                        {%endif%}
+                        {%endfor%}
 
                     </div>
                 </div>

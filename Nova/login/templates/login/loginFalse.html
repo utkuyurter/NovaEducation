@@ -107,7 +107,8 @@
         <!-- Title -->
         <div class="title-wrap">
             <h1 class="mbr-section-title mbr-fonts-style display-2"><strong>Log In</strong></h1>
-            <h2 class="mbr-section-subtitle mbr-fonts-style mbr-light display-5">Don't Forget Your Student/Teacher Tag!</h2>
+
+            <h2 class="mbr-section-subtitle-2 mbr-fonts-style-2 mbr-light display-5">Wrong UserID or Password!</h2>
         </div>
         <div class="mbr-row mbr-jc-c">
 
@@ -115,7 +116,6 @@
             {% csrf_token %}
             <div class="fieldset">
 
-            <input type="hidden" name="username" >
             <input type="text" name="username" placeholder="ID">
             <input type="password" name="password" placeholder="Password" >
             <button class="btn btn-md mbr-bold btn-primary display-7" type="submit" value="Submit" >Log In</button>
@@ -125,6 +125,9 @@
 </div>
 </div>
 </div>
+{% if form.errors %}
+<h2 class="mbr-section-subtitle mbr-fonts-style mbr-light display-5">User or password incorrect</h2>
+{% endif %}</section>
 
 <section class="form1 cid-rG36Bmsyni" id="form1-b">
     <!--  -->

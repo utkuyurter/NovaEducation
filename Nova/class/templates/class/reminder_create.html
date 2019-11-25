@@ -22,7 +22,6 @@
   <script async  src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
   <script async custom-element="amp-date-picker" src="https://cdn.ampproject.org/v0/amp-date-picker-0.1.js"></script>
 
 
@@ -97,50 +96,27 @@
     <div class="container align-center mbr-white">
         <!-- Title -->
         <div class="title-wrap">
-            <h1 class="mbr-section-title mbr-fonts-style display-2"><strong>Content Settings</strong></h1>
+            <h1 class="mbr-section-title mbr-fonts-style display-2"><strong>Create Reminder</strong></h1>
         </div>
         <!-- Forms -->
         <div class="mbr-row mbr-jc-c">
         <div data-form-type="formoid" class="mbr-col-lg-7">
-        <form class="mbr-form" method="post" target="_top" action-xhr="https://formoid.net/api/amp-form/push" data-form-title="8b Form"><input type="hidden" name="siteid" data-form-siteid="true" value="77551"><input type="hidden" name="email" data-form-email="true" value="olGvus9o1sUfi+nRGC2/+Cke99/XaYhGTnYY5aBmsO+24y5bTS1SF8SspA30189pip0d2Z+6PRRgeXyCYhiCTbHKBLxbkH3+QJ3R6A3FIvdijEWAWJQiOyVkDRSokysx">
-            <div class="bg-for-datepicker"></div>
-
+        <form class="mbr-form" method="post" action-xhr=".">
+            {% csrf_token %}
             <!-- Fieldset -->
             <div class="fieldset">
                 <!-- 1 -->
 
                 <div class="field" data-for="form[data][0][1]">
-                    <input type="hidden" name="form[data][0][0]" value="Name" id="form[data][0][0]-form1-2d" data-form-field="">
-                    <input type="text" name="form[data][0][1]" data-form-field="Name" placeholder="Title" required="" id="form[data][0][1]-form1-2d">
+                    <input type="text" name="title"  placeholder="Title">
                 </div>
                 <div class="text-field" data-for="form[data][4][1]">
-                                <input type="hidden" name="form[data][2][0]" value="Message" id="form[data][4][0]-form1-2d" data-form-field="">
-                                <textarea name="form[data][2][1]" rows="5" data-form-field="Description" placeholder="Description" id="form[data][4][1]-form1-2d"></textarea>
+                                <textarea name="reminder" rows="5"  placeholder="Reminder"></textarea>
                             </div>
 
-                <div class="field" data-for="form[data][2][1]">
-                   <div class="date-picker-wrap">
-                       <input type="hidden" name="form[data][2][0]" value="Due Date" id="form[data][2][0]-form1-2d" data-form-field="">
-                       <amp-date-picker id="simple-date-picker" type="single" mode="overlay" layout="container" on="select:AMP.setState({'form[data][2][1]': event.date, dateType1: event.id})" input-selector=".input-date28" class="example-picker space-between" open-after-select="" format="YYYY-MM-DD" locale="en">
-                       <input class="input-date28" data-form-field="Due Date" placeholder="Due Date" autocomplete="off" name="form[data][2][1]" required="" id="form[data][2][1]-form1-2d">
-                   </amp-date-picker>
-               </div>
-           </div>
-           <!-- 4 -->
-           <div class="field" data-for="form[data][3][1]">
-               <input type="hidden" name="form[data][3][0]" value="Due Time" id="form[data][3][0]-form1-2d" data-form-field="">
-               <input type="time" class="timepicker" name="form[data][3][1]" data-form-field="Due Time" placeholder="Due Time" required="" value="12:00" min="09:00" max="18:00" step="60" id="form[data][3][1]-form1-2d">
-           </div>
-
-            <!-- Button -->
             <div class="align-center">
                 <button type="submit" class="btn btn-primary btn-form display-4">
-                    Attach Files
-                </button>
-            </div>
-            <div class="align-center">
-                <button type="submit" class="btn btn-primary btn-form display-4">
-                    Update Content
+                    Create Reminder
                 </button>
             </div>
 

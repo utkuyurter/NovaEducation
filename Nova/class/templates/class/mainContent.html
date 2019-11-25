@@ -1,4 +1,5 @@
 {%load static%}
+{%load customFunctions%}
 <!DOCTYPE html>
 <html amp>
 <head>
@@ -88,7 +89,9 @@
 
       <div class="container">
           <div class="title align-center">
-              <h3 class="mbr-section-title mbr-fonts-style mbr-bold display-2">MATH 2414<br>Calculus 2</h3>
+              {%for class in s_content%}
+              <h3 class="mbr-section-title mbr-fonts-style mbr-bold display-2">{{class.content_of.class_id|getClassName}} {{class.content_of.class_id|getClassNumber}}<br>{{class.content_of.class_id|getClassDesc}}</h3>
+              {%endfor%}
           </div>
       </div>
   </section>
@@ -101,20 +104,26 @@
 
     <div class="container">
         <div class="title-wrap mbr-pb-4 align-center">
-            <h3 class="mbr-section-title mbr-bold mbr-fonts-style display-2">Tests - 100%</h3>
-            <h4 class="mbr-section-subtitle mbr-fonts-style mbr-pt-2 display-5"><strong>Affects 30% of Overall Grade</strong></h4>
+            {%for content in s_content%}
+            <h3 class="mbr-section-title mbr-bold mbr-fonts-style display-2">{{content.content_of.type}} - {%getAvg student.1 content.content_of.class_id content.id%}%</h3>
+            <h4 class="mbr-section-subtitle mbr-fonts-style mbr-pt-2 display-5"><strong>Affects {{content.content_of.affect}}% of Overall Grade</strong></h4>
+            {%endfor%}
         </div>
         <div class="mbr-row mbr-jc-c mbr-column">
-            <div class="card mbr-col-sm-12 md-pb lg-pb align-center">
+            {%for content in contents%}
+            <div class="card mbr-col-sm-12 align-center last-child">
                 <div class="card-wrapper mbr-flex mbr-pt-3 mbr-pb-3 mbr-px-4">
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Test 1</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">Grade: Not graded</h4>
-                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Due: 10/05/2019</p>
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="test/">Go to Test</a></div>
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">{{content.content_of.title}}</h3>
+                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">Grade: {{content.grade_number}}</h4>
+                        <p class="card-text mbr-fonts-style mbr-pt-2 display-7">Due: {{content.content_of.due_date}}</p>
+                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="quiz/{{content.id}}">Go to {{content.content_of.type}}</a></div>
                     </div>
                 </div>
             </div>
+            {%endfor%}
+
+
 
 
 

@@ -119,9 +119,11 @@
 
     <div class="container">
         <div class="title align-center">
-            <h3 class="mbr-section-title mbr-fonts-style mbr-bold display-2">MATH 2414<br>Total Students: 32</h3>
-            <h4 class="mbr-text mbr-fonts-style mbr-pt-2 display-5">Calculus 2<br>MW/10:00AM - 11:30AM</h4>
+            {%for class in class%}
+            <h3 class="mbr-section-title mbr-fonts-style mbr-bold display-2">{{class.class_name}} {{class.class_number}}<br>Total Students: {{num_student}}</h3>
+            <h4 class="mbr-text mbr-fonts-style mbr-pt-2 display-5">{{class.class_desc}}<br>{{class.days.0}} - {{class.days.1}}<br>{{class.times.0}} - {{class.times.1}}</h4>
             <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="settings/">Course Settings</a></div>
+            {%endfor%}
         </div>
     </div>
 </section>
@@ -138,50 +140,22 @@
 
         </div>
         <div class="mbr-row">
+
+            {%for content in content %}
             <div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3 md-pb">
                 <div class="card-wrapper mbr-flex">
 
                     <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><p>Assignments</p></h3>
+                        <h3 class="card-title mbr-bold mbr-fonts-style display-5"><p>{{content.type}}</p></h3>
                         <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">10 Assignments</h4>
 
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../../class/teacher_class_assignment/">Go to Content</a></div>
+                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../../../class/teacher_class/content/assignments/">Go to Content</a></div>
                     </div>
                 </div>
             </div>
-            <div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3 md-pb">
-                <div class="card-wrapper mbr-flex">
 
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Quizzes</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">5 Quizzes</h4>
+            {%endfor%}
 
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../../class/teacher_class_quizzes/">Go to Content</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3">
-                <div class="card-wrapper mbr-flex">
-
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Tests</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">5 Tests</h4>
-
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../../class/teacher_class_tests/">Go to Content</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-3 last-child">
-                <div class="card-wrapper mbr-flex">
-
-                    <div class="card-box">
-                        <h3 class="card-title mbr-bold mbr-fonts-style display-5">Projects</h3>
-                        <h4 class="card-subtitle mbr-pt-3 mbr-fonts-style mbr-bold display-7">1 Projects</h4>
-
-                        <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../../class/teacher_class_projects/">Go to Content</a></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -203,6 +177,27 @@
 <img src="{% static "img/line.png" %}" layout="responsive" width="100" height="70">
 
 
+<section class="features1 cid-rIcoEr8Uco" id="features1-28">
+
+
+
+    <div class="container">
+        <div class="title-wrap mbr-pb-4 align-center">
+            <h3 class="mbr-section-title mbr-bold mbr-fonts-style display-2">Attendance</h3>
+
+        </div>
+        <div class="mbr-section-btn align-center">
+            <div class="card-btn mbr-section-btn mbr-pt-2"><a class="btn btn-lg btn-primary display-7" href="../../class/attendance/">Update Attendance</a></div>
+        </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<img src="{% static "img/line.png" %}" layout="responsive" width="100" height="70">
+
+
 <section class="contacts5 cid-rIcqjq2EAD" id="contacts5-29">
 
 
@@ -216,12 +211,7 @@
         <div class="form-block mbr-col-lg-8 mbr-m-auto" data-form-type="formoid">
             <form class="mbr-form mbr-jc-c mbr-flex mbr-m-auto mbr-column" method="post" target="_top" action-xhr="https://formoid.net/api/amp-form/push" data-form-title="8b Form"><input type="hidden" name="siteid" data-form-siteid="true" value="77551"><input type="hidden" name="email" data-form-email="true" value="46ezBbsM+RUl3Klj/HVApnUOtbbt2rTo8mHBuBqyPkdhcXu4jPtdN6MoMh5BJT34rl3IMKkkqWtxxogMA6Fyta/njrWXQNaMagUoKy34Eh+n30JTQPfbWvTiereQE2vZ">
 
-                <div submit-success="">
-                    <template data-form-alert="" type="amp-mustache">Subscription successful!</template>
-                </div>
-                <div submit-error="">
-                    <template data-form-alert="" type="amp-mustache">Failed! {{error}}</template>
-                </div>
+
                 <div class="fieldset">
                     <div class="field" data-for="form[data][0][1]">
                         <input type="hidden" name="form[data][0][0]" value="First Name" id="form[data][0][0]-contacts5-29" data-form-field="">
